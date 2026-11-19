@@ -239,7 +239,7 @@ if(!d||!Array.isArray(d.hunts)||!Array.isArray(d.caught))return toast("That code
 document.getElementById("nav").onclick=function(e){var b=e.target.closest("button");if(b){tab=b.dataset.t;render();scrollTo(0,0)}};
 addEventListener("keydown",function(e){if(e.code==="Space"&&tab==="hunt"&&!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)&&!$(".x-modal")){e.preventDefault();bump(1)}});
 setInterval(function(){S.hunts.forEach(function(h){var d=h.day;roll(h);if(d!==h.day){save();if(tab==="hunt")upd()}})},60000);
-history.pushState({x:1},"");addEventListener("popstate",function(){if($(".x-modal"))shut();else if(tab==="hunt"){tab="hunts";render();scrollTo(0,0)}else if(tab!=="dex"){tab="dex";render();scrollTo(0,0)}else{history.back();return}history.pushState({x:1},"")});
+history.pushState({x:1},"");addEventListener("popstate",function(){if($(".x-modal"))shut();else if(tab==="hunt"||tab==="stats"){tab="hunts";render();scrollTo(0,0)}else if(tab!=="dex"){tab="dex";render();scrollTo(0,0)}else{history.back();return}history.pushState({x:1},"")});
 boot();
 </script>
 <script>if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});</script>
