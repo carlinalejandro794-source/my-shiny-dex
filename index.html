@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#0f1220"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0f1220" />
+<title>My Shiny Dex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" />
+<link rel="stylesheet" href="hark.css" />
+<link rel="stylesheet" href="hark-hero.css" />
+<style>
+:root{--x-bg:#0f1220;--x-card:#1a1f33;--x-card2:#232a44;--x-grey:#8d94b3;--x-gold:linear-gradient(135deg,#ffd54a,#ffb627);--x-g:#ffc83a;--x-pur:#7c5cff;--x-r:18px}
+html,body{background:var(--x-bg)!important;color:#fff;margin:0;overflow-x:clip;max-width:100%}
+.x-app{width:100%;min-width:0}
+.x-gbtn,.x-sq.x-g,.x-chip.on{background-color:#ffc83a!important}
+body{font-family:var(--sans);-webkit-tap-highlight-color:transparent;overscroll-behavior-y:none}
+.x-app{max-width:520px;margin:0 auto;padding:16px 16px 120px;min-height:100vh;box-sizing:border-box}
+.x-app *{box-sizing:border-box}
+.x-app button,.x-app input,.x-app select{font:inherit;color:inherit}
+.x-hd{display:flex;align-items:center;gap:10px;margin:6px 0 16px}
+.x-hd h1{flex:1;margin:0;font-size:26px;font-weight:600;letter-spacing:-.02em;color:#fff}
+.x-hd h1 b,.x-gold-t{color:var(--x-g)}
+.x-sq{width:44px;height:44px;border-radius:14px;border:0;background:var(--x-card);font-size:22px;display:grid;place-items:center;cursor:pointer;flex:none}
+.x-sq.x-g{background:var(--x-gold);color:#1a1300;font-weight:600}
+.x-card{background:var(--x-card);border-radius:var(--x-r);padding:16px;margin-bottom:12px}
+.x-lbl{font-size:12px;font-variant:small-caps;text-transform:lowercase;letter-spacing:.08em;color:var(--x-grey);font-weight:600;margin:0 0 6px}
+.x-grey{color:var(--x-grey);font-size:13px;margin:2px 0}
+.x-hero{background:linear-gradient(135deg,#7c5cff,#4b2fc9 70%,#2d1f80);border-radius:var(--x-r);padding:18px;margin-bottom:14px}
+.x-hero .x-lbl{color:#d9d0ff}
+.x-big{font-size:38px;font-weight:600;margin:2px 0 10px}
+.x-big small{font-size:20px;opacity:.7}
+.x-bar{height:8px;border-radius:99px;background:rgba(255,255,255,.15);overflow:hidden}
+.x-bar i{display:block;height:100%;background:var(--x-gold);border-radius:99px;transition:width .3s}
+.x-bar.x-thin{height:4px;margin-top:8px}
+.x-chips{max-width:100%;display:flex;gap:8px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none}
+.x-chip{flex:none;border:0;border-radius:99px;padding:0 14px;min-height:44px;min-width:44px;background:var(--x-card);color:#fff;font-size:13px;font-weight:500;cursor:pointer}
+.x-chip.on{background:var(--x-gold);color:#1a1300;font-weight:600}
+.x-in{width:100%;min-height:46px;border-radius:14px;border:1px solid #2c3454;background:var(--x-card);padding:0 14px;font-size:15px;outline:none}
+.x-in:focus{border-color:var(--x-pur)}
+select.x-in{appearance:none}
+.x-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px}
+.x-tile{background:var(--x-card);border-radius:14px;border:0;padding:6px 2px 6px;cursor:pointer;display:flex;flex-direction:column;align-items:center}
+.x-tile img{width:56px;height:56px;object-fit:contain}
+.x-tile span{font-size:12px;color:var(--x-grey);font-family:var(--mono,monospace)}
+.x-tile.off img{filter:brightness(0);opacity:.35}
+.x-tile.cg{box-shadow:inset 0 0 0 2px #ffd54a55}
+.x-px{image-rendering:pixelated}
+.x-hunt{display:flex;gap:14px;align-items:center;cursor:pointer}
+.x-hunt .x-av{width:64px;height:64px;border-radius:16px;background:var(--x-card2);display:grid;place-items:center;flex:none}
+.x-hunt .x-av img{max-width:56px;max-height:56px}
+.x-hunt h3{margin:0;font-size:17px;font-weight:600;color:#fff}
+.x-hunt>div:last-child{flex:1;min-width:0}
+.x-pbtn{width:100%;min-height:52px;border:0;border-radius:99px;background:var(--x-pur);font-weight:600;font-size:15px;cursor:pointer;margin:6px 0 12px}
+.x-pbtn.x-red{background:#e5484d}
+.x-gbtn{border:0;border-radius:16px;background:var(--x-gold);color:#1a1300;font-weight:600;cursor:pointer;min-height:52px}
+.x-dbtn{border:0;border-radius:16px;background:var(--x-card);font-weight:600;cursor:pointer;min-height:52px}
+.x-nav{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;gap:4px;background:rgba(26,31,51,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:6px;border-radius:99px;box-shadow:0 10px 30px rgba(0,0,0,.5);z-index:20}
+.x-nav{max-width:calc(100vw - 20px)}
+.x-nav button{border:0;background:none;border-radius:99px;padding:0 clamp(10px,3.5vw,18px);min-height:48px;font-size:14px;font-weight:600;color:var(--x-grey);cursor:pointer;white-space:nowrap}
+.x-nav button.on{background:#2e2366;color:var(--x-g)}
+.x-hs{text-align:center}
+.x-glow{width:170px;height:170px;margin:4px auto 0;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,rgba(255,213,74,.35),rgba(124,92,255,.15) 55%,transparent 70%)}
+.x-glow img{width:120px;height:120px;object-fit:contain;filter:drop-shadow(0 0 14px rgba(255,213,74,.6))}
+.x-pulse{animation:x-p .5s var(--ease-out,ease-out)}
+@keyframes x-p{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
+.x-count{font-size:84px;font-weight:600;line-height:1;margin:6px 0 4px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.x-row{display:flex;gap:10px;align-items:stretch;margin:14px 0}
+.x-row>*{flex:1}
+.x-plus{flex:2.2!important;font-size:30px;min-height:76px;border-radius:22px}
+.x-g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.x-g2 .x-card{margin:0;text-align:left}
+.x-g2 b{font-size:24px;font-weight:600}
+.x-tog{display:flex;align-items:center;gap:10px;justify-content:space-between;min-height:44px;font-size:14px;cursor:pointer}
+.x-tog input{width:44px;height:26px;accent-color:var(--x-pur)}
+.x-range{width:100%;accent-color:#ffc83a;min-height:32px}
+.x-meter{height:10px;border-radius:99px;background:var(--x-card2);overflow:hidden;margin:6px 0}
+.x-meter i{display:block;height:100%;width:0;background:var(--x-pur);transition:width .1s}
+.x-badge{display:inline-block;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:600;background:#e5484d33;color:#ff8f93}
+.x-warn{background:#3a1d24;color:#ffb3b6;font-size:14px}
+.x-modal{position:fixed;inset:0;background:rgba(5,7,15,.7);z-index:40;display:flex;align-items:flex-end;justify-content:center}
+.x-sheet{background:var(--x-bg);border:1px solid #262d48;border-bottom:0;border-radius:24px 24px 0 0;width:100%;max-width:520px;max-height:90vh;overflow:auto;padding:20px 16px calc(24px + env(safe-area-inset-bottom))}
+.x-sheet h2{margin:0 0 14px;font-size:20px;color:#fff}
+.x-f{margin-bottom:12px}
+.x-toast{position:fixed;left:50%;top:18px;transform:translateX(-50%);background:var(--x-card2);border:1px solid #3a4266;border-radius:99px;padding:10px 18px;font-size:14px;font-weight:600;z-index:60;box-shadow:0 8px 24px rgba(0,0,0,.5);white-space:nowrap}
+.x-cf{position:fixed;top:-12px;width:9px;height:14px;z-index:70;pointer-events:none;animation:x-fall linear forwards}
+@keyframes x-fall{to{transform:translateY(110vh) rotate(720deg)}}
+.x-sbar{display:flex;align-items:center;gap:12px;margin:10px 0}
+.x-sbar span{width:96px;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.x-sbar .x-bar{flex:1;height:12px}
+.x-sbar em{font-style:normal;font-size:13px;color:var(--x-grey);width:56px;text-align:right}
+.x-empty{text-align:center;color:var(--x-grey);padding:30px 10px}
+textarea.x-in{min-height:90px;padding:10px 14px;font-size:12px;font-family:monospace}
+@media (prefers-reduced-motion:reduce){.x-pulse,.x-cf{animation:none}.x-cf{display:none}}
+</style>
+</head>
+<body>
+<div class="page" id="top">
+<main class="x-app" id="app"></main>
+<nav class="x-nav" id="nav">
+<button data-t="dex">📕 Dex</button><button data-t="hunts">🎯 Hunts</button><button data-t="stats">📊 Stats</button>
+</nav>
+</div>
+<datalist id="dl"></datalist>
+<script src="hark.js"></script>
+<script>
+var S={hunts:[],caught:[],settings:{}},LS="myShinyDex",NAMES=[],tab="dex",cur=null,gen=0,filt="all",q="",lastSaved=0,db=null;
+var GENS=[[1,151],[152,251],[252,386],[387,493],[494,649],[650,721],[722,809],[810,905],[906,1025]];
+var GAMES=["Red / Blue","Yellow","Gold / Silver","Crystal","Ruby / Sapphire","Emerald","FireRed / LeafGreen","Diamond / Pearl","Platinum","HeartGold / SoulSilver","Black / White","Black 2 / White 2","X / Y","Omega Ruby / Alpha Sapphire","Sun / Moon","Ultra Sun / Ultra Moon","Let's Go Pikachu / Eevee","Sword / Shield","Brilliant Diamond / Shining Pearl","Legends: Arceus","Scarlet / Violet","Legends: Z-A"];
+var METHODS=["Soft Reset","Random Encounter","Masuda","Other"],ODDS=[8192,4096,1365,683,512];
+var $=function(s){return document.querySelector(s)},app=$("#app");
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return"&#"+c.charCodeAt(0)+";"})}
+function today(){var d=new Date();return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()}
+function pad(n){return"#"+String(n).padStart(3,"0")}
+function nm(d){var s=NAMES[d-1];return s?s.split("-").map(function(w){return w[0].toUpperCase()+w.slice(1)}).join(" "):pad(d)}
+function slug(d){return(NAMES[d-1]||"").replace(/-/g,"")}
+function spr(d,cls){var n=slug(d),a=n?"https://play.pokemonshowdown.com/sprites/gen5ani-shiny/"+n+".gif":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/"+d+".png";return'<img class="x-px '+(cls||"")+'" loading="lazy" alt="'+esc(nm(d))+'" data-d="'+d+'" data-s="'+(n?0:2)+'" src="'+a+'" onerror="sf(this)">'}
+function sf(i){var s=+i.dataset.s,d=i.dataset.d,n=slug(d);if(s==0){i.dataset.s=1;i.src="https://play.pokemonshowdown.com/sprites/ani-shiny/"+n+".gif"}else if(s==1){i.dataset.s=2;i.src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/"+d+".png"}else i.onerror=null}
+function chance(h){return(1-Math.pow(1-1/h.odds,h.count))*100}
+function roll(h){var t=today();if(h.day!==t){h.day=t;h.today=0}}
+/* storage */
+function idb(){return new Promise(function(r){try{var o=indexedDB.open(LS,1);o.onupgradeneeded=function(){o.result.createObjectStore("kv")};o.onsuccess=function(){db=o.result;r(db)};o.onerror=function(){r(null)}}catch(e){r(null)}})}
+function save(){lastSaved=Date.now();var p={t:lastSaved,S:S};try{localStorage.setItem(LS,JSON.stringify(p))}catch(e){}try{if(db)db.transaction("kv","readwrite").objectStore("kv").put(p,"S")}catch(e){}var el=$("#ls");if(el)el.textContent=new Date(lastSaved).toLocaleTimeString()}
+function loadIdb(){return new Promise(function(r){if(!db)return r(null);try{var g=db.transaction("kv").objectStore("kv").get("S");g.onsuccess=function(){r(g.result||null)};g.onerror=function(){r(null)}}catch(e){r(null)}})}
+async function boot(){var a=null;try{a=JSON.parse(localStorage.getItem(LS))}catch(e){}await idb();var b=await loadIdb();var p=a&&b?(b.t>a.t?b:a):(a||b);
+if(p&&p.S){S=p.S;S.hunts=S.hunts||[];S.caught=S.caught||[];S.settings=S.settings||{};lastSaved=p.t}else{S.hunts.push({id:Date.now(),dex:4,game:"FireRed / LeafGreen",method:"Soft Reset",odds:8192,count:30,phases:0,today:30,day:today(),hist:[],cries:"",sens:60,gf:false,thr:.8})}
+try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
+save();try{NAMES=JSON.parse(localStorage.getItem(LS+"-names"))||[]}catch(e){}render();
+if(NAMES.length<1025)fetch("https://pokeapi.co/api/v2/pokemon-species?limit=1025").then(function(r){return r.json()}).then(function(j){var a=[];j.results.forEach(function(x){var d=+x.url.split("/").filter(Boolean).pop();a[d-1]=x.name});NAMES=a;try{localStorage.setItem(LS+"-names",JSON.stringify(a))}catch(e){}render()}).catch(function(){})}
+addEventListener("pagehide",save);document.addEventListener("visibilitychange",function(){if(document.hidden)save()});
+/* ui helpers */
+function toast(t){var o=$(".x-toast");if(o)o.remove();var e=document.createElement("div");e.className="x-toast";e.textContent=t;document.body.appendChild(e);setTimeout(function(){e.remove()},2600)}
+function vib(p){if(S.settings.vib!==false&&navigator.vibrate)try{navigator.vibrate(p)}catch(e){}}
+function modal(h){shut();var m=document.createElement("div");m.className="x-modal";m.innerHTML='<div class="x-sheet">'+h+"</div>";m.onclick=function(e){if(e.target===m)shut()};document.body.appendChild(m);return m}
+function shut(){var m=$(".x-modal");if(m)m.remove()}
+function confetti(){var c=["#ffd54a","#ffb627","#7c5cff","#fff","#4ade80"];for(var i=0;i<90;i++){var e=document.createElement("i");e.className="x-cf";e.style.left=Math.random()*100+"vw";e.style.background=c[i%5];e.style.animationDuration=1.8+Math.random()*1.8+"s";e.style.animationDelay=Math.random()*.6+"s";document.body.appendChild(e);setTimeout(e.remove.bind(e),4200)}}
+function caughtSet(){var s={};S.caught.forEach(function(c){s[c.dex]=1});return s}
+/* render */
+function render(){document.querySelectorAll("#nav button").forEach(function(b){b.classList.toggle("on",b.dataset.t===tab||(tab==="hunt"&&b.dataset.t==="hunts"))});if(tab!=="hunt")stopListen();
+({dex:rDex,hunts:rHunts,stats:rStats,hunt:rHunt})[tab]();var dl=$("#dl");if(NAMES.length&&dl.childElementCount!==NAMES.length)dl.innerHTML=NAMES.map(function(n,i){return'<option value="'+esc(nm(i+1))+'">'}).join("")}
+function rDex(){var cs=caughtSet(),n=Object.keys(cs).length,p=n/1025*100;
+app.innerHTML='<div class="x-hd"><h1>✨ My Shiny <b>Dex</b></h1><button class="x-sq x-g" aria-label="New hunt" onclick="newHunt()">+</button></div>'+
+'<div class="x-hero"><p class="x-lbl">all pokémon · shiny dex</p><p class="x-big">'+n+' <small>/ 1025</small></p><div class="x-bar"><i style="width:'+p+'%"></i></div><p class="x-grey" style="color:#d9d0ff;margin-top:8px">'+p.toFixed(1)+"% complete · "+S.caught.length+" shinies logged</p></div>"+
+'<div class="x-chips">'+["All",1,2,3,4,5,6,7,8,9].map(function(g,i){return'<button class="x-chip'+(gen===i?" on":"")+'" onclick="gen='+i+';rDex()">'+(i?"Gen "+g:"All")+"</button>"}).join("")+"</div>"+
+'<div class="x-chips">'+[["all","Everything"],["c","✨ Caught"],["m","Missing"]].map(function(f){return'<button class="x-chip'+(filt===f[0]?" on":"")+'" onclick="filt=\''+f[0]+'\';rDex()">'+f[1]+"</button>"}).join("")+"</div>"+
+'<input class="x-in" id="q" type="search" placeholder="🔍 Search Pokémon" value="'+esc(q)+'"><div class="x-grid" id="grid"></div>';
+var qi=$("#q");qi.oninput=function(){q=qi.value;grid()};grid()}
+function grid(){var cs=caughtSet(),lo=gen?GENS[gen-1][0]:1,hi=gen?GENS[gen-1][1]:1025,ql=q.trim().toLowerCase(),h="";
+for(var d=lo;d<=hi;d++){var c=cs[d];if(filt==="c"&&!c||filt==="m"&&c)continue;if(ql&&nm(d).toLowerCase().indexOf(ql)<0&&String(d).indexOf(ql.replace("#",""))!==0)continue;
+h+='<button class="x-tile'+(c?" cg":" off")+'" onclick="tileTap('+d+')" aria-label="'+esc(nm(d))+'">'+spr(d)+"<span>"+pad(d)+"</span></button>"}
+$("#grid").innerHTML=h||'<p class="x-empty" style="grid-column:1/-1">No Pokémon match.</p>'}
+function tileTap(d){var c=caughtSet()[d],hs=S.hunts.find(function(x){return x.dex===d});
+modal('<div style="text-align:center"><div class="x-glow" style="width:130px;height:130px">'+spr(d)+'</div><h2>'+esc(nm(d))+' <span class="x-grey">'+pad(d)+'</span></h2></div>'+
+(hs?'<button class="x-pbtn" onclick="shut();openHunt('+hs.id+')">Continue hunt · '+hs.count+' encounters</button>':'<button class="x-pbtn" onclick="newHunt('+d+')">🎯 Start a hunt</button>')+
+(c?'<button class="x-dbtn" style="width:100%" onclick="unmark('+d+')">Remove from caught</button>':'<button class="x-gbtn" style="width:100%" onclick="markCaught('+d+')">✨ Mark as caught</button>'))}
+function markCaught(d){S.caught.push({dex:d,count:0,date:Date.now(),game:"",method:""});save();shut();confetti();vib([60,40,120]);toast("✨ "+nm(d)+" added to your Shiny Dex");render()}
+function unmark(d){S.caught=S.caught.filter(function(c){return c.dex!==d});save();shut();render()}
+function newHunt(d){var opts=ODDS.map(function(o){return'<option value="'+o+'">1/'+o+"</option>"}).join("")+'<option value="c">Custom…</option>';
+var m=modal('<h2>🎯 New hunt</h2><div class="x-f"><p class="x-lbl">pokémon</p><input class="x-in" id="np" list="dl" placeholder="Name or dex number" value="'+(d?esc(nm(d)):"")+'"></div>'+
+'<div class="x-f"><p class="x-lbl">game</p><select class="x-in" id="ng">'+GAMES.map(function(g){return"<option"+(g==="Scarlet / Violet"?" selected":"")+">"+esc(g)+"</option>"}).join("")+'</select></div>'+
+'<div class="x-f"><p class="x-lbl">method</p><select class="x-in" id="nm">'+METHODS.map(function(g){return"<option>"+g+"</option>"}).join("")+'</select></div>'+
+'<div class="x-f"><p class="x-lbl">odds</p><select class="x-in" id="no">'+opts+'</select><input class="x-in" id="nc" type="number" min="1" placeholder="Custom odds, e.g. 2048" style="display:none;margin-top:8px"></div>'+
+'<button class="x-gbtn" style="width:100%" id="nb">Start hunting</button>');
+var no=$("#no"),nc=$("#nc");no.onchange=function(){nc.style.display=no.value==="c"?"block":"none"};
+$("#nb").onclick=function(){var v=$("#np").value.trim().toLowerCase(),dx=+v.replace("#","");if(!(dx>=1&&dx<=1025)){dx=0;for(var i=0;i<1025;i++)if(nm(i+1).toLowerCase()===v){dx=i+1;break}}
+if(!dx)return toast("Pick a Pokémon from the list");var o=no.value==="c"?+nc.value:+no.value;if(!(o>=1))return toast("Enter the odds");
+var h={id:Date.now(),dex:dx,game:$("#ng").value,method:$("#nm").value,odds:Math.round(o),count:0,phases:0,today:0,day:today(),hist:[],cries:"",sens:60,gf:false,thr:.8};
+S.hunts.unshift(h);save();shut();openHunt(h.id)}}
+function rHunts(){app.innerHTML='<div class="x-hd"><h1>🎯 Hunts</h1><button class="x-sq x-g" aria-label="New hunt" onclick="newHunt()">+</button></div>'+
+(S.hunts.length?S.hunts.map(function(h){roll(h);return'<div class="x-card x-hunt" onclick="openHunt('+h.id+')"><div class="x-av">'+spr(h.dex)+'</div><div><h3>'+esc(nm(h.dex))+'</h3><p class="x-grey">'+h.count.toLocaleString()+" encounters · 1/"+h.odds+'</p><p class="x-grey">'+esc(h.game)+" · "+esc(h.method)+'</p><div class="x-bar x-thin"><i style="width:'+Math.min(100,chance(h))+'%"></i></div></div></div>'}).join(""):'<p class="x-empty">No active hunts yet.</p>')+
+'<button class="x-pbtn" onclick="newHunt()">+ Start a new hunt</button>'}
+function rStats(){var tot=0,cc=0;S.hunts.forEach(function(h){tot+=h.count});S.caught.forEach(function(c){tot+=c.count||0;cc+=c.count||0});var mx=Math.max.apply(null,S.hunts.map(function(h){return h.count}).concat([1]));
+app.innerHTML='<div class="x-hd"><h1>📊 Stats</h1></div><div class="x-g2" style="margin-bottom:12px">'+
+[["total encounters",tot.toLocaleString()],["shinies caught",S.caught.length],["avg per shiny",S.caught.length?Math.round(cc/S.caught.length).toLocaleString():"—"],["active hunts",S.hunts.length]].map(function(s){return'<div class="x-card"><p class="x-lbl">'+s[0]+"</p><b>"+s[1]+"</b></div>"}).join("")+"</div>"+
+'<div class="x-card"><p class="x-lbl">encounters per hunt</p>'+(S.hunts.length?S.hunts.map(function(h){return'<div class="x-sbar"><span>'+esc(nm(h.dex))+'</span><div class="x-bar"><i style="width:'+h.count/mx*100+'%"></i></div><em>'+h.count.toLocaleString()+"</em></div>"}).join(""):'<p class="x-grey">Start a hunt to see bars here.</p>')+"</div>"+
+(S.caught.length?'<div class="x-card"><p class="x-lbl">shinies found</p>'+S.caught.slice().reverse().map(function(c){return'<div class="x-sbar"><span>✨ '+esc(nm(c.dex))+'</span><em style="flex:1;width:auto">'+(c.count?c.count.toLocaleString()+" enc · ":"")+new Date(c.date).toLocaleDateString()+"</em></div>"}).join("")+"</div>":"")}
+function openHunt(id){cur=id;tab="hunt";render();scrollTo(0,0)}
+function H(){return S.hunts.find(function(h){return h.id===cur})}
+function rHunt(){var h=H();if(!h){tab="hunts";return render()}roll(h);
+app.innerHTML='<div class="x-hd"><button class="x-sq" aria-label="Back" onclick="tab=\'hunts\';render()">←</button><h1 style="text-align:center;font-size:20px">'+esc(nm(h.dex))+'</h1><button class="x-sq" aria-label="Settings" onclick="settings()">⚙️</button></div>'+
+'<div class="x-hs"><div class="x-glow" id="glow">'+spr(h.dex)+'</div><p class="x-count" id="cnt">'+h.count.toLocaleString()+'</p><p class="x-grey">'+esc(h.game)+" · "+esc(h.method)+" · 1/"+h.odds+"</p></div>"+
+'<div class="x-row"><button class="x-dbtn" style="font-size:26px" aria-label="Minus one" onclick="bump(-1)">−</button><button class="x-gbtn x-plus" onclick="bump(1)">+1</button><button class="x-dbtn" style="font-size:24px" aria-label="Undo" onclick="undo()">↶</button></div>'+
+'<div class="x-g2"><div class="x-card"><p class="x-lbl">odds now</p><b>1/'+h.odds+'</b></div><div class="x-card"><p class="x-lbl">chance so far</p><b id="ch">'+chance(h).toFixed(1)+'%</b></div><div class="x-card"><p class="x-lbl">phases</p><b id="ph">'+h.phases+'</b></div><div class="x-card"><p class="x-lbl">today</p><b id="td">'+h.today+"</b></div></div>"+
+'<div class="x-row"><button class="x-dbtn" onclick="phase()">🔁 Phase</button><button class="x-gbtn" onclick="found()">✨ Found it!</button></div>'+
+'<button class="x-pbtn'+(L.on?" x-red":"")+'" id="lb" onclick="toggleListen()">'+(L.on?"■ Stop listening":"🎧 Auto count (listen) · phone can lie flat")+'</button><div id="mic"></div>'+
+'<div class="x-card"><p class="x-lbl">also count these pokémon\'s cries (comma between)</p><input class="x-in" id="cr" placeholder="e.g. Charmander, Pidgey" value="'+esc(h.cries||"")+'">'+
+'<p class="x-lbl" style="margin-top:12px">sensitivity <span id="sv">'+h.sens+'</span></p><input class="x-range" type="range" min="1" max="100" id="sn" value="'+h.sens+'">'+
+'<label class="x-tog"><span>🎮 Count every soft reset (Game Freak intro)</span><input type="checkbox" id="gf"'+(h.gf?" checked":"")+'></label><div id="gfb"></div></div>';
+$("#cr").oninput=function(){h.cries=this.value;save()};$("#sn").oninput=function(){h.sens=+this.value;$("#sv").textContent=h.sens;save()};$("#gf").onchange=function(){h.gf=this.checked;save();gfBox()};gfBox();if(L.blocked)micBlocked()}
+function gfBox(){var h=H(),b=$("#gfb");if(!b)return;if(!h.gf){b.innerHTML="";return}var pr=S.settings.gfPrint;
+b.innerHTML='<p class="x-grey">Only the GBA Game Freak boot chime counts.</p>'+'<p class="x-lbl">match threshold <span id="tv">'+Math.round(h.thr*100)+'%</span></p><input class="x-range" type="range" min="60" max="95" id="th" value="'+Math.round(h.thr*100)+'">'+
+'<p class="x-lbl">live match <span id="mv">0%</span> <span id="lk"></span></p><div class="x-meter"><i id="mm"></i></div>';
+$("#th").oninput=function(){h.thr=this.value/100;$("#tv").textContent=this.value+"%";save()}}
+function upd(){var h=H();if(!h||tab!=="hunt")return;$("#cnt").textContent=h.count.toLocaleString();$("#ch").textContent=chance(h).toFixed(1)+"%";$("#ph").textContent=h.phases;$("#td").textContent=h.today;var g=$("#glow");g.classList.remove("x-pulse");void g.offsetWidth;g.classList.add("x-pulse")}
+function snap(h){h.hist.push([h.count,h.today,h.phases]);if(h.hist.length>60)h.hist.shift()}
+function bump(n){var h=H();if(!h)return;roll(h);if(n<0&&h.count<=0)return;snap(h);h.count+=n;h.today=Math.max(0,h.today+n);save();upd();if(n>0)vib(25)}
+function undo(){var h=H();if(!h||!h.hist.length)return toast("Nothing to undo");var p=h.hist.pop();h.count=p[0];h.today=p[1];h.phases=p[2];save();upd()}
+function phase(){var h=H();snap(h);h.phases++;save();upd();toast("🔁 Phase logged · "+h.phases)}
+function found(){var h=H();if(!confirm("Found shiny "+nm(h.dex)+" after "+h.count+" encounters?"))return;S.caught.push({dex:h.dex,count:h.count,phases:h.phases,date:Date.now(),game:h.game,method:h.method,odds:h.odds});S.hunts=S.hunts.filter(function(x){return x!==h});save();stopListen();confetti();vib([80,50,80,50,200]);toast("✨ "+nm(h.dex)+" caught after "+h.count.toLocaleString()+"!");tab="dex";render()}
+/* audio */
+var L={on:false},T={on:false};
+function micBlocked(){var m=$("#mic");if(m)m.innerHTML='<div class="x-card x-warn">Microphone is blocked — open in Chrome and allow the mic</div>'}
+async function mic(){if(L.ctx)return true;try{L.stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}});L.blocked=false}catch(e){L.blocked=true;micBlocked();return false}
+L.ctx=new(window.AudioContext||window.webkitAudioContext)();L.an=L.ctx.createAnalyser();L.an.fftSize=2048;L.an.smoothingTimeConstant=0;L.ctx.createMediaStreamSource(L.stream).connect(L.an);L.fd=new Float32Array(L.an.frequencyBinCount);L.td=new Float32Array(L.an.fftSize);
+var sr=L.ctx.sampleRate,bw=sr/L.an.fftSize;L.edges=[];for(var i=0;i<=64;i++)L.edges.push(Math.max(1,Math.round(100*Math.pow(80,i/64)/bw)));L.hi=[Math.round(2000/bw),Math.round(6000/bw)];return true}
+function frame(){L.an.getFloatFrequencyData(L.fd);L.an.getFloatTimeDomainData(L.td);var r=0;for(var i=0;i<L.td.length;i++)r+=L.td[i]*L.td[i];r=Math.sqrt(r/L.td.length);
+var v=[],tot=0,hiE=0;for(var b=0;b<64;b++){var a=L.edges[b],z=Math.max(a+1,L.edges[b+1]),s=0;for(var k=a;k<z;k++)s+=Math.pow(10,L.fd[k]/20);s/=z-a;v.push(s);tot+=s}
+for(var k2=L.hi[0];k2<L.hi[1];k2++)hiE+=Math.pow(10,L.fd[k2]/20);return{v:v,rms:r,tot:tot,hiR:hiE/(L.hi[1]-L.hi[0])/(tot/64+1e-9)}}
+function norm(v){var s=0;for(var i=0;i<v.length;i++)s+=v[i]*v[i];s=Math.sqrt(s)||1;return v.map(function(x){return x/s})}
+async function toggleListen(){if(L.on)return stopListen();if(!await mic())return;await L.ctx.resume();L.on=true;L.cool=0;L.lock=0;L.quiet=0;L.buf=[];
+try{L.wl=await navigator.wakeLock.request("screen")}catch(e){}L.iv=setInterval(tick,46);var b=$("#lb");if(b){b.className="x-pbtn x-red";b.textContent="■ Stop listening"}toast("🎧 Listening…")}
+function stopListen(){if(!L.on)return;L.on=false;clearInterval(L.iv);try{L.wl&&L.wl.release()}catch(e){}L.wl=null;var b=$("#lb");if(b){b.className="x-pbtn";b.textContent="🎧 Auto count (listen) · phone can lie flat"}}
+function hit(msg){var h=H();if(!h)return;bump(1);vib([40,30,40]);toast(msg+" · Count: "+h.count.toLocaleString())}
+function tick(){var h=H();if(!h)return stopListen();var f=frame(),now=Date.now(),thr=(101-h.sens)/100*.25+.004;
+if(!h.gf){if(f.rms>thr&&now>L.cool){L.cool=now+3000;hit("🔊 Sound heard (+1)")}return}
+var lk=$("#lk");if(lk)lk.innerHTML=now<L.lock?'<span class="x-badge">locked '+Math.ceil((L.lock-now)/1000)+" s</span>":"";
+var pr=null;if(pr){L.buf.push(norm(f.v));if(L.buf.length>pr.length)L.buf.shift();var sim=0;if(L.buf.length===pr.length){for(var i=0;i<pr.length;i++){var s=0,a=L.buf[i],p=pr[i];for(var j=0;j<64;j++)s+=a[j]*p[j];sim+=s}sim/=pr.length}
+var mv=$("#mv"),mm=$("#mm");if(mv){mv.textContent=Math.round(sim*100)+"%";mm.style.width=Math.max(0,sim*100)+"%";mm.style.background=sim>=h.thr?"#ffc83a":"var(--x-pur)"}
+if(sim>=h.thr&&now>L.lock){L.lock=now+15000;L.buf=[];hit("Game Freak intro heard (+1)")}}
+else{var mv=$("#mv"),mm=$("#mm"),cs=Math.min(1,f.hiR/1.6*(f.rms>thr?1:f.rms/thr));if(mv){mv.textContent=Math.round(cs*100)+"%";mm.style.width=cs*100+"%"}if(f.rms<thr*.4)L.quiet+=46;else{if(L.quiet>=1000&&f.rms>thr&&f.hiR>1.6&&now>L.lock){L.lock=now+15000;hit("Game Freak intro heard (+1)")}if(f.rms>thr*.4)L.quiet=0}
+var mv2=$("#mv"),mm2=$("#mm");if(mv2){var e=Math.min(1,f.rms/thr);mv2.textContent=Math.round(e*100)+"% loud";mm2.style.width=e*100+"%"}}}
+async function teach(){if(T.on)return;if(!await mic())return;await L.ctx.resume();T.on=true;gfBox();var fr=[],en=[];
+var iv=setInterval(function(){var f=frame();fr.push(norm(f.v));en.push(f.rms)},46);
+setTimeout(function(){clearInterval(iv);T.on=false;var mx=Math.max.apply(null,en),a=0,b=en.length-1;while(a<b&&en[a]<mx*.12)a++;while(b>a&&en[b]<mx*.12)b--;var p=fr.slice(a,b+1);
+if(p.length<8||mx<.003){toast("Too quiet — play the intro louder");gfBox();return}S.settings.gfPrint=p.map(function(v){return v.map(function(x){return Math.round(x*1000)/1000})});save();toast("🎓 Intro learned ("+p.length+" frames)");vib(60);gfBox()},4000)}
+/* settings */
+function enc(){return btoa(unescape(encodeURIComponent(JSON.stringify(S))))}
+function settings(){modal('<h2>⚙️ Settings</h2><div class="x-card"><p class="x-lbl">export code</p><textarea class="x-in" id="ex" readonly>'+enc()+'</textarea><div class="x-row" style="margin:10px 0 0"><button class="x-dbtn" onclick="cp()">Copy code</button><button class="x-dbtn" onclick="dl()">Download .json</button></div></div>'+
+'<div class="x-card"><p class="x-lbl">import</p><textarea class="x-in" id="im" placeholder="Paste an export code or JSON"></textarea><div class="x-row" style="margin:10px 0 0"><button class="x-gbtn" onclick="imp($(\'#im\').value)">Import code</button><label class="x-dbtn" style="display:grid;place-items:center;cursor:pointer">Choose .json<input type="file" accept=".json,application/json" hidden id="fi"></label></div></div>'+
+'<div class="x-card"><label class="x-tog"><span>📳 Vibration</span><input type="checkbox" id="vb"'+(S.settings.vib!==false?" checked":"")+'></label><p class="x-grey">Last saved <span id="ls">'+(lastSaved?new Date(lastSaved).toLocaleTimeString():"—")+"</span></p></div>"+
+'<button class="x-pbtn" onclick="shut()">Done</button>');
+$("#vb").onchange=function(){S.settings.vib=this.checked;save()};$("#fi").onchange=function(){var f=this.files[0];if(f)f.text().then(imp)}}
+function cp(){var t=$("#ex");t.select();try{navigator.clipboard.writeText(t.value)}catch(e){document.execCommand("copy")}toast("Code copied")}
+function dl(){var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,1)],{type:"application/json"}));a.download="my-shiny-dex-"+today()+".json";document.body.appendChild(a);a.click();a.remove()}
+function imp(t){t=(t||"").trim();var d=null;try{d=JSON.parse(t)}catch(e){try{d=JSON.parse(decodeURIComponent(escape(atob(t))))}catch(e2){}}
+if(!d||!Array.isArray(d.hunts)||!Array.isArray(d.caught))return toast("That code didn't work");if(!confirm("Replace your data with this import?"))return;S={hunts:d.hunts,caught:d.caught,settings:d.settings||{}};save();shut();toast("Imported ✓");tab="dex";render()}
+document.getElementById("nav").onclick=function(e){var b=e.target.closest("button");if(b){tab=b.dataset.t;render();scrollTo(0,0)}};
+addEventListener("keydown",function(e){if(e.code==="Space"&&tab==="hunt"&&!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)&&!$(".x-modal")){e.preventDefault();bump(1)}});
+setInterval(function(){S.hunts.forEach(function(h){var d=h.day;roll(h);if(d!==h.day){save();if(tab==="hunt")upd()}})},60000);
+boot();
+</script>
+<script>if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});</script>
+</body>
+</html>
